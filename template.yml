@@ -1,0 +1,15 @@
+parameters:
+- name: serviceConnection
+  type: string
+
+stages:
+- stage: Test
+  jobs:
+  - job: UseProtectedConnection
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: ${{ parameters.serviceConnection }}
+        scriptType: ps
+        scriptLocation: inlineScript
+        inlineScript: Write-Host "Required Template check passed"
